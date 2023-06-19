@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const EditItem = (item) => {
+const LookUp = (item) => {
+  const [orderNo, setOrderNo] = useState("");
   const [date, setDate] = useState("");
   const [customer, setCustomer] = useState("");
   const [trackingNo, setTrackingNo] = useState("");
@@ -9,10 +10,10 @@ const EditItem = (item) => {
   //console.log(item.item)
 
   useEffect(() => {
-
     if (item.item !== "") {
       var elemnet = document.getElementById(item.item);
       console.log(elemnet);
+      setOrderNo(elemnet.children[0].innerHTML);
       setDate(elemnet.children[1].innerHTML);
       setCustomer(elemnet.children[2].innerHTML);
       setTrackingNo(elemnet.children[3].innerHTML);
@@ -21,20 +22,15 @@ const EditItem = (item) => {
     }
   }, [item.item])
 
-  function saveEdit() {
-    var editedVal = document.getElementById(item.item)
-    editedVal.children[1].innerHTML = date
-    editedVal.children[2].innerHTML = customer
-    editedVal.children[3].innerHTML = trackingNo
-    editedVal.children[4].innerHTML = status
-    editedVal.children[5].innerHTML = consginee
+  function close() {
+
   }
   return (
-    <div className="modal" tabIndex={-1} id="edit-modal">
+    <div className="modal" tabIndex={-1} id="look-modal">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Edit shipment info</h5>
+            <h5 className="modal-title">Shipment info</h5>
             <button
               type="button"
               className="btn-close"
@@ -43,6 +39,18 @@ const EditItem = (item) => {
             />
           </div>
           <div className="modal-body">
+          <div className="mb-3 ">
+              <label htmlFor="orderNo" className="form-label">
+                Order number
+              </label>
+              <input
+                type="text"
+                className="form-control "
+                id="orderNo"
+                value={orderNo}
+                readOnly
+              />
+            </div>
             <div className="mb-3 ">
               <label htmlFor="date" className="form-label">
                 Date
@@ -51,14 +59,12 @@ const EditItem = (item) => {
                 type="text"
                 className="form-control "
                 id="date"
-                placeholder="Enter your new date"
                 value={date}
-                onChange={(e) => setDate(e.target.value)}
-                required
+                readOnly
               />
             </div>
 
-            <div className="mb-3 ">
+            <div className="mb-3">
               <label htmlFor="customer" className="form-label">
                 Customer
               </label>
@@ -66,10 +72,9 @@ const EditItem = (item) => {
                 type="text"
                 className="form-control "
                 id="customer"
-                placeholder="Enter your new customer"
+
                 value={customer}
-                onChange={(e) => setCustomer(e.target.value)}
-                required
+                readOnly
               />
             </div>
 
@@ -81,10 +86,10 @@ const EditItem = (item) => {
                 type="text"
                 className="form-control "
                 id="trackingNo"
-                placeholder="Enter your new tracking number"
+
                 value={trackingNo}
-                onChange={(e) => setTrackingNo(e.target.value)}
-                required
+
+                readOnly
               />
             </div>
 
@@ -96,10 +101,9 @@ const EditItem = (item) => {
                 type="text"
                 className="form-control "
                 id="status"
-                placeholder="Enter your new status"
+
                 value={status}
-                onChange={(e) => setStatus(e.target.value)}
-                required
+                readOnly
               />
             </div>
 
@@ -111,21 +115,20 @@ const EditItem = (item) => {
                 type="text"
                 className="form-control "
                 id="consignee"
-                placeholder="Enter your new consignee"
+
                 value={consginee}
-                onChange={(e) => setConsginee(e.target.value)}
-                required
+                readOnly
               />
             </div>
           </div>
           <div className="modal-footer">
             <button
-              onClick={saveEdit}
+              onClick={close}
               data-bs-dismiss="modal"
               type="button"
               className="btn btn-primary"
             >
-              Save
+              Close
             </button>
           </div>
         </div>
@@ -133,4 +136,4 @@ const EditItem = (item) => {
     </div>
   );
 };
-export default EditItem;
+export default LookUp;
