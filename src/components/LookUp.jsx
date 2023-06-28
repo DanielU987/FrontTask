@@ -12,13 +12,12 @@ const LookUp = (item) => {
   useEffect(() => {
     if (item.item !== "") {
       var elemnet = document.getElementById(item.item);
-      console.log(elemnet);
-      setOrderNo(elemnet.children[0].innerHTML);
-      setDate(elemnet.children[1].innerHTML);
-      setCustomer(elemnet.children[2].innerHTML);
-      setTrackingNo(elemnet.children[3].innerHTML);
-      setStatus(elemnet.children[4].innerHTML);
-      setConsginee(elemnet.children[5].innerHTML);
+      setOrderNo(elemnet.children[0].getAttribute('name'));
+      setDate(elemnet.children[1].getAttribute('name'));
+      setCustomer(elemnet.children[2].getAttribute('name'));
+      setTrackingNo(elemnet.children[3].getAttribute('name'));
+      setStatus(elemnet.children[4].getAttribute('name'));
+      setConsginee(elemnet.children[5].getAttribute('name'));
     }
   }, [item.item])
 
@@ -39,10 +38,8 @@ const LookUp = (item) => {
             />
           </div>
           <div className="modal-body">
-          <div className="mb-3 ">
-              <label htmlFor="orderNo" className="form-label">
-                Order number
-              </label>
+            <div className="mb-3 ">
+              <label htmlFor="orderNo" className="form-label">Order number</label>
               <input
                 type="text"
                 className="form-control "
@@ -52,9 +49,7 @@ const LookUp = (item) => {
               />
             </div>
             <div className="mb-3 ">
-              <label htmlFor="date" className="form-label">
-                Date
-              </label>
+              <label htmlFor="date" className="form-label">Date</label>
               <input
                 type="text"
                 className="form-control "
@@ -65,57 +60,44 @@ const LookUp = (item) => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="customer" className="form-label">
-                Customer
-              </label>
+              <label htmlFor="customer" className="form-label">Customer</label>
               <input
                 type="text"
                 className="form-control "
                 id="customer"
-
                 value={customer}
                 readOnly
               />
             </div>
 
             <div className="mb-3 ">
-              <label htmlFor="trackingNo" className="form-label">
-                Tracking number
-              </label>
+              <label htmlFor="trackingNo" className="form-label">Tracking number</label>
               <input
                 type="text"
                 className="form-control "
                 id="trackingNo"
-
                 value={trackingNo}
-
                 readOnly
               />
             </div>
 
             <div className="mb-3 ">
-              <label htmlFor="status" className="form-label">
-                Status
-              </label>
+              <label htmlFor="status" className="form-label">Status</label>
               <input
                 type="text"
                 className="form-control "
                 id="status"
-
                 value={status}
                 readOnly
               />
             </div>
 
             <div className="mb-3 ">
-              <label htmlFor="consignee" className="form-label">
-                Consignee
-              </label>
+              <label htmlFor="consignee" className="form-label">Consignee</label>
               <input
                 type="text"
                 className="form-control "
                 id="consignee"
-
                 value={consginee}
                 readOnly
               />
@@ -126,8 +108,7 @@ const LookUp = (item) => {
               onClick={close}
               data-bs-dismiss="modal"
               type="button"
-              className="btn btn-primary"
-            >
+              className="btn btn-primary">
               Close
             </button>
           </div>

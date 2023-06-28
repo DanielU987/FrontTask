@@ -1,9 +1,14 @@
-.btn-outline-info:hover {
-  color: #fff!important;
-}
+
 .loading {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.table-cell {
+  width: 150px; /* Задайте фиксированную ширину ячейки */
+  white-space: nowrap; /* Запрет переноса текста на новую строку */
+  overflow: hidden; /* Скрытие текста, который не помещается */
+  text-overflow: ellipsis; /* Обрезка текста и отображение многоточия */
 }

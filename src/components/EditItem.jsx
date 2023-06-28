@@ -12,12 +12,11 @@ const EditItem = (item) => {
 
     if (item.item !== "") {
       var elemnet = document.getElementById(item.item);
-      console.log(elemnet);
-      setDate(elemnet.children[1].innerHTML);
-      setCustomer(elemnet.children[2].innerHTML);
-      setTrackingNo(elemnet.children[3].innerHTML);
-      setStatus(elemnet.children[4].innerHTML);
-      setConsginee(elemnet.children[5].innerHTML);
+      setDate(elemnet.children[1].getAttribute('name'));
+      setCustomer(elemnet.children[2].getAttribute('name'));
+      setTrackingNo(elemnet.children[3].getAttribute('name'));
+      setStatus(elemnet.children[4].getAttribute('name'));
+      setConsginee(elemnet.children[5].getAttribute('name'));
     }
   }, [item.item])
 
@@ -28,6 +27,25 @@ const EditItem = (item) => {
     editedVal.children[3].innerHTML = trackingNo
     editedVal.children[4].innerHTML = status
     editedVal.children[5].innerHTML = consginee
+
+    editedVal.children[1].setAttribute('name',date)
+    editedVal.children[2].setAttribute('name',customer) 
+    editedVal.children[3].setAttribute('name',trackingNo) 
+    editedVal.children[4].setAttribute('name',status) 
+    editedVal.children[5].setAttribute('name',consginee)
+
+    const tableCells = document.querySelectorAll('.table-cell');
+
+    for (let i = 0; i < tableCells.length; i++) {
+      const cell = tableCells[i];
+      const originalText = cell.innerText;
+
+      if (originalText.length > 12) { // Проверка длины текста
+        const truncatedText = originalText.substring(0, 10) + '...'; // Обрезка и добавление многоточия
+        cell.innerText = truncatedText;
+      }
+    }
+
   }
   return (
     <div className="modal" tabIndex={-1} id="edit-modal">
@@ -44,9 +62,7 @@ const EditItem = (item) => {
           </div>
           <div className="modal-body">
             <div className="mb-3 ">
-              <label htmlFor="date" className="form-label">
-                Date
-              </label>
+              <label htmlFor="date" className="form-label">Date</label>
               <input
                 type="text"
                 className="form-control "
@@ -59,9 +75,7 @@ const EditItem = (item) => {
             </div>
 
             <div className="mb-3 ">
-              <label htmlFor="customer" className="form-label">
-                Customer
-              </label>
+              <label htmlFor="customer" className="form-label">Customer</label>
               <input
                 type="text"
                 className="form-control "
@@ -74,9 +88,7 @@ const EditItem = (item) => {
             </div>
 
             <div className="mb-3 ">
-              <label htmlFor="trackingNo" className="form-label">
-                Tracking number
-              </label>
+              <label htmlFor="trackingNo" className="form-label">Tracking number</label>
               <input
                 type="text"
                 className="form-control "
@@ -89,9 +101,7 @@ const EditItem = (item) => {
             </div>
 
             <div className="mb-3 ">
-              <label htmlFor="status" className="form-label">
-                Status
-              </label>
+              <label htmlFor="status" className="form-label">Status</label>
               <input
                 type="text"
                 className="form-control "
@@ -104,9 +114,7 @@ const EditItem = (item) => {
             </div>
 
             <div className="mb-3 ">
-              <label htmlFor="consignee" className="form-label">
-                Consignee
-              </label>
+              <label htmlFor="consignee" className="form-label">Consignee</label>
               <input
                 type="text"
                 className="form-control "
@@ -123,8 +131,7 @@ const EditItem = (item) => {
               onClick={saveEdit}
               data-bs-dismiss="modal"
               type="button"
-              className="btn btn-primary"
-            >
+              className="btn btn-primary">
               Save
             </button>
           </div>
