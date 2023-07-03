@@ -18,7 +18,7 @@ Follow these steps to get started with the Shipments CRUD app:
 
 1. Clone the repository from GitHub:
 ```
-git clone https://github.com/DanielU987/React-Axios
+git clone https://github.com/DanielU987/React-Axios.git
 ```
 2. Open a command prompt or terminal and navigate to the project directory.
 3. Run `npm install` to install the required dependencies.
